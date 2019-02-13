@@ -1,7 +1,7 @@
 # README
 
 
-##  userテーブル
+##  usersテーブル
 
 |Column|Type|Options|
 |------|----|-------|
@@ -12,19 +12,19 @@
 |name|varcher|null: false|
 
 ### Association
-- has_many :group, through: members
+- has_many :groups, through: members
 - has_many :members
 
 
 
-##  groupテーブル
+##  groupsテーブル
 |Column|Type|Options|
 |------|----|-------|
 |user_id|integer|null: false, foreign_key: true|
 |group_id|integer|null: false, foreign_key: true|
 
 ### Association
-- has_many :user, through :members
+- has_many :users, through :members
 - has_many :members
 
 
@@ -35,8 +35,8 @@
 |group_id|integer|null: false, foreign_key: true|
 
 ### Association
-- belongs_to :group
-- belongs_to :user
+- belongs_to :groups
+- belongs_to :users
 - has_many :messages
 
 
@@ -50,3 +50,4 @@
 
 ### Association
 - belongs_to :members
+- belongs_to :users, through :members
