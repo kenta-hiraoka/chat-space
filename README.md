@@ -12,8 +12,8 @@
 |name|varcher|null: false|
 
 ### Association
-- has_many :groups, through: members
-- has_many :members
+- has_many :groups
+- has_many :messages
 
 
 
@@ -24,20 +24,10 @@
 |group_id|integer|null: false, foreign_key: true|
 
 ### Association
-- has_many :users, through :members
-- has_many :members
-
-
-## membersテーブル
-|Column|Type|Options|
-|------|----|-------|
-|user_id|integer|null: false, foreign_key: true|
-|group_id|integer|null: false, foreign_key: true|
-
-### Association
-- belongs_to :groups
-- belongs_to :users
+- has_many :users
 - has_many :messages
+
+
 
 
 ## messagesテーブル
@@ -49,5 +39,5 @@
 |body|text|
 
 ### Association
-- belongs_to :members
-- belongs_to :users, through :members
+- belongs_to :groups
+- belongs_to :users
