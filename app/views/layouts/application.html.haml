@@ -4,9 +4,19 @@
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title ChatSpace
     = csrf_meta_tags
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
-    =csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track' => 'reload'
+
   %body
-    = render partial: 'layouts/flash'
-    = yield
+    .side-bar
+      .side-bar__top
+        .side-bar__top_icon
+          = link_to "" do
+            = fa_icon "edit"
+          = link_to "" do
+            = fa_icon "cog"
+        .side-bar__top_user_name
+          oyaji
+      = render "layouts/side-bar-groups"
+    .main-space
+      = yield

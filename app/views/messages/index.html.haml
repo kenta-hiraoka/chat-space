@@ -1,0 +1,22 @@
+.message-page
+
+  .message-page__top
+    .message-page__top__button
+      %p.button
+        EDIT
+    %p.message-page__top__group-name
+      グループ名
+    %p.message-page__top__member-name
+      Member:oyaji
+
+
+    = render "messages/index-messages"
+
+.form
+  .form__input
+    .form__input__message
+      メッセージ入力
+      %input{:type => "submit", :value => "SEND"}
+      .form__input__icon
+        = link_to "" do
+          = fa_icon "image"
