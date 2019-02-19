@@ -1,5 +1,4 @@
 .message-page
-
   .message-page__top
     .message-page__top__button
       %p.button
@@ -9,16 +8,15 @@
     %p.message-page__top__member-name
       Member:oyaji
 
-
-    = render "messages/index-messages"
+      = render "index-messages"
 
 .form
   .form__input
     .form__input__message
       メッセージ入力
-      %input{:type => "submit", :value => "SEND"}
+      %input{type: "submit", value: "SEND"}
       .form__input__icon
         %label.upload-label{for: "upload-icon"}
           %i.fa.fa-picture-o
-          %input{:type => "file", :id =>"upload-icon", :style => "display:none;"}
+          %input{type: "file", id: "upload-icon", style: "display: none;"}
 
