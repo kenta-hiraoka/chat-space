@@ -3,7 +3,7 @@
   .message-page__top
     .message-page__top__button
       %p.button
-        EDIT
+        = link_to "Edit"
     %p.message-page__top__group-name
       グループ名
     %p.message-page__top__member-name
@@ -18,5 +18,7 @@
       メッセージ入力
       %input{:type => "submit", :value => "SEND"}
       .form__input__icon
-        = link_to "" do
-          = fa_icon "image"
+        %label.upload-label{for: "upload-icon"}
+          %i.fa.fa-picture-o
+          %input{:type => "file", :id =>"upload-icon", :style => "display:none;"}
+
