@@ -2,7 +2,7 @@ body {
   height: 100vh;
   width: 100vw;
 
-  .side-bar {
+  .side_bar {
     width: 300px;
     float: left;
 
@@ -29,7 +29,7 @@ body {
       background-color: #2f3e51;
       padding: 20px 20px 0 20px;
       height: calc(100vh - 120px);
-      &_group-name {
+      &_group_name {
         color: $color-a;
         font-size: 15px;
         font-weight: bold;
@@ -41,9 +41,5 @@ body {
         font-weight: bold
       }
     }
-  }
-
-  .main-space {
-    float:left;
   }
 }

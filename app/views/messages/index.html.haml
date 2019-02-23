@@ -1,22 +1,24 @@
-.message-page
-  .message-page__top
-    .message-page__top__button
-      %p.button
-        = link_to "Edit"
-    %p.message-page__top__group-name
-      グループ名
-    %p.message-page__top__member-name
-      Member:oyaji
+.main_space
+  = render "devise/shared/side_bar"
+  .message_page
+    .message_page__top
+      .message_page__top__button
+        %p.button
+          = link_to "Edit"
+      %p.message_page__top__group_name
+        グループ名
+      %p.message_page__top__member_name
+        Member:oyaji
 
-      = render "index-messages"
+        = render "index_messages"
 
-.form
-  .form__input
-    .form__input__message
-      メッセージ入力
-      %input{type: "submit", value: "SEND"}
-      .form__input__icon
-        %label.upload-label{for: "upload-icon"}
-          %i.fa.fa-picture-o
-          %input{type: "file", id: "upload-icon", style: "display: none;"}
+  .form
+    .form__input
+      .form__input__message
+        メッセージ入力
+        %input{type: "submit", value: "SEND"}
+        .form__input__icon
+          %label.upload-label{for: "upload-icon"}
+            %i.fa.fa-picture-o
+            %input{type: "file", id: "upload-icon", style: "display: none;"}
 
