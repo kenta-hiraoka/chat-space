@@ -3,15 +3,17 @@
     .side_bar__top_user_name
       = current_user.name
     .side_bar__top_icon
-      = link_to do
+      = link_to new_group_path do
         = fa_icon "pencil-square-o", class: "icon"
       = link_to edit_user_path(current_user) do
         = fa_icon "cog", class: "icon"
   .side_bar__groups
-    .side_bar__groups_group_name
-      サンプル
-    .side_bar__groups_message
-      gohogoho
+    - current_user.groups.each do |group|
+      = link_to group_messages_path(group) do
+        .side_bar__groups_group_name
+          = group.name
+        .side_bar__groups_message
+          gohogoho
 
 
 
