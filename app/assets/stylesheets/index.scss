@@ -1,0 +1,95 @@
+.message_page {
+  background-color: #fafafa;
+  width: calc(100vw - 300px);
+  height: calc(100vh - 90px);
+  float: right;
+
+
+  &__top {
+    height: 100px;
+    padding:0 40px 0;
+    border-bottom: 2px solid #eeeeee;
+    &__button {
+      height: 40px;
+      width: 80px;
+      color: $color-b;
+      line-height: 40px;
+      float: right;
+      border: 1px solid $color-b;
+      margin-top: 28px;
+      p.button {
+        padding: 0 20px;
+    }
+      a {
+        text-decoration: none;
+      }
+    }
+    &__group_name {
+      font-size: 20px;
+      color: #333333;
+      padding-top: 35px;
+    }
+    &__member_name {
+      font-size: 12px;
+      color: #999999;
+      padding-top: 15px;
+    }
+  }
+
+  &__body {
+     height: calc(100vh - 190px);
+    &__info {
+        padding-top: 46px;
+      &_user_name {
+        font-size: 16px;
+        color: #434A54;
+        font-weight: bold;
+        float: left;
+      }
+      &_date {
+        font-size: 12px;
+        color: #999999;
+        float: left;
+        margin-left: 10px;
+      }
+    }
+    &__message {
+      font-size: 14px;
+      color: #434A54;
+      clear: both;
+      padding-top: 10px;
+      padding-bottom: 40px;
+    }
+  }
+}
+
+.form {
+  height: 50px;
+  background-color: #fafafa;
+  border-top: 20px solid #ddd;
+  border-right: 40px solid #ddd;
+  border-bottom: 20px solid #ddd;
+  border-left: 40px solid #ddd;
+  &__input {
+    height: 50px;
+    &__message {
+      font-size: 16px;
+      color: #434A54;
+      padding: 0 0 0 10px;
+      line-height: 50px;
+    }
+      input[type="submit"] {
+      background-color: $color-b;
+      height: 50px;
+      width: 100px;
+      color: white;
+      float: right;
+      margin-left: 15px;
+    }
+      &__icon {
+      float: right;
+      line-height: 50px;
+      margin-right: 10px;
+    }
+  }
+}
