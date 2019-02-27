@@ -1,24 +1,29 @@
-.main_space
-  = render "devise/shared/side_bar"
-  .message_page
-    .message_page__top
-      .message_page__top__button
-        %p.button
-          = link_to "Edit"
-      %p.message_page__top__group_name
-        グループ名
-      %p.message_page__top__member_name
-        Member:oyaji
+.contents
+  .chat-side
+    = render 'shared/side_bar'
 
-        = render "index_messages"
+  .chat
+    .header
+      .left-header
+        .left-header__title
+          = @group.name
+        %ul.left-header__members
+          member:
+          - @group.users.each do |user|
+            %li.member
+              =user.name
 
-  .form
-    .form__input
-      .form__input__message
-        メッセージ入力
-        %input{type: "submit", value: "SEND"}
-        .form__input__icon
-          %label.upload-label{for: "upload-icon"}
-            %i.fa.fa-picture-o
-            %input{type: "file", id: "upload-icon", style: "display: none;"}
+      .right-header
+        .right-header__button
+        = link_to "Edit",edit_group_path(@group)
+    .messages
+      = render @messages
 
+    .form
+      = form_for [@group, @message] do |f|
+        = f.text_field :content, class: 'form__message', placeholder: 'type a message'
+        .form__mask
+          = f.label :image, class: 'form__mask__image' do
+            = fa_icon 'picture-o', class: 'icon'
+            = f.file_field :image, class: 'hidden'
+        = f.submit 'Send', class: 'form__submit'
