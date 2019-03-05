@@ -19,7 +19,7 @@ $(function(){
                   <div class="message__image">
                     ${image}
                   </div>
-                  </div>`
+                </div>`
     return html;
   }
 
@@ -55,6 +55,7 @@ $(function(){
     })
     .fail(function(){
       alert('メッセージが送信できませんでした');
+      $('.form_submit').prop('disabled', false);
     })
   })
 });
