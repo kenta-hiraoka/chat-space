@@ -1,6 +1,9 @@
 $(function(){
   function buildHTML(message) {
-    var html = `<div class="message">
+
+    var image = message.image ? `<img src=${message.image}>` : ``
+
+    var html = `<div class="message" data-massage-id = "${message.id}">
                   <div class="upper_message">
                     <div class="upper-message__user-name">
                       ${message.user_name}
@@ -14,7 +17,7 @@ $(function(){
                       </p>
                     </div>
                     <div class="message__image">
-                      ${message.image}
+                      ${image}
                     </div>
                     </div>`
     return html;
@@ -33,11 +36,14 @@ $(function(){
     })
     .done(function(data){
       var html = buildHTML(data);
-      $('.messages').append(html)
-      $('.form__message').val('')
+      $('messages').append(html);
+      $('messages').animate({ scrollTop: $('.messages')[0].scrollHeight });
+      $("form")[0].reset();
+    $('.form__submit').prop('disabled', false);
     })
+
     .fail(function(){
       alert('メッセージが送信できませんでした');
     })
-  })
+  });
 });
