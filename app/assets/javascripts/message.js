@@ -11,21 +11,27 @@ $(function(){
                       ${message.date}
                     </div>
                   </div>
-                    <div class="lower-message">
-                      <p class="lower-message.content">
-                      ${message.content}
-                      </p>
-                    </div>
-                    <div class="message__image">
-                      ${image}
-                    </div>
-                    </div>`
+                  <div class="lower-message">
+                    <p class="lower-message.content">
+                    ${message.content}
+                    </p>
+                  </div>
+                  <div class="message__image">
+                    ${image}
+                  </div>
+                  </div>`
     return html;
   }
+
+  function scroll(){
+    $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast')
+  }
+
   $('#new_message').on('submit',function(e){
     e.preventDefault();
     var formData = new FormData(this);
     var url = $(this).attr('action')
+
     $.ajax({
       url: url,
       type: "POST",
@@ -35,15 +41,20 @@ $(function(){
       contentType: false
     })
     .done(function(data){
-      var html = buildHTML(data);
-      $('messages').append(html);
-      $('messages').animate({ scrollTop: $('.messages')[0].scrollHeight });
-      $("form")[0].reset();
-    $('.form__submit').prop('disabled', false);
+      if (data.length !== 0) {
+        var html = buildHTML(data);
+      $('.messages').append(html);
+      $('.form__submit').prop('disabled', false);
+      scroll();
+      $('#new_message')[0].reset();
+    }
+      else {
+      alert('メッセージを入力してください');
+      $('.form_submit').prop('disabled', false);
+    }
     })
-
     .fail(function(){
       alert('メッセージが送信できませんでした');
     })
-  });
+  })
 });
