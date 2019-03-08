@@ -33,7 +33,7 @@ $(function() {
 
   $("#user-search-field").on("keyup", function() {
     var input = $("#user-search-field").val();
-    if (input == ""){
+    if (input.length == ""){
       $("#user-search-result").empty();
     }
     else {
