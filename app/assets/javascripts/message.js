@@ -57,5 +57,29 @@ $(function(){
       alert('メッセージが送信できませんでした');
       $('.form_submit').prop('disabled', false);
     })
-  })
+  });
+
+    var autoupdate = setInterval(function() {
+      if (location.pathname.match(/\/groups\/\d+\/messages/)) {
+        var last_message_id = $(".message").last().data('message-id');
+        $.ajax({
+          url: location.pathname,
+          type: "GET",
+          dataType: 'json',
+          data: {id: last_message_id }
+        })
+        .done(function(new_message) {
+          new_message.forEach(function(message) {
+            $('.messages').append(buildHTML(message));
+            scroll();
+          })
+        })
+        .fail(function(data) {
+          alert('自動更新に失敗しました');
+        })
+      }
+      else {
+        clearInterval(interval);
+      }
+    }, 5000 );
 });
