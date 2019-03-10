@@ -58,7 +58,8 @@ $(function(){
       $('.form_submit').prop('disabled', false);
     })
   });
-    var auto_update = setInterval(function() {
+
+    var autoupdate = setInterval(function() {
       if (location.pathname.match(/\/groups\/\d+\/messages/)) {
         var last_message_id = $(".message").last().data('message-id');
         $.ajax({
@@ -67,8 +68,8 @@ $(function(){
           dataType: 'json',
           data: {id: last_message_id }
         })
-        .done(function(data) {
-          data.forEach(function(message) {
+        .done(function(new_message) {
+          new_message.forEach(function(message) {
             $('.messages').append(buildHTML(message));
             scroll();
           })
@@ -80,5 +81,5 @@ $(function(){
       else {
         clearInterval(interval);
       }
-    }, 5000 )
+    }, 5000 );
 });
