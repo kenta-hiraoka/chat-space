@@ -1,23 +1,23 @@
 $(function(){
   function buildHTML(message) {
 
-    var image = message.image ? `<img src=${message.image}>` : ``
+    var image = message.image ? `<img src=${ message.image }>` : ``;
 
-    var html = `<div class="message" data-massage-id = "${message.id}">
+    var html = `<div class="message" data-massage-id = "${ message.id }">
                   <div class="upper_message">
                     <div class="upper-message__user-name">
-                      ${message.user_name}
+                      ${ message.user_name }
                     <div class="upper-message__date">
-                      ${message.date}
+                      ${ message.date }
                     </div>
                   </div>
                   <div class="lower-message">
                     <p class="lower-message.content">
-                    ${message.content}
+                    ${ message.content }
                     </p>
                   </div>
                   <div class="message__image">
-                    ${image}
+                    ${ image }
                   </div>
                 </div>`
     return html;
@@ -31,6 +31,7 @@ $(function(){
     e.preventDefault();
     var formData = new FormData(this);
     var url = $(this).attr('action')
+    console.log("a")
 
     $.ajax({
       url: url,
@@ -81,5 +82,5 @@ $(function(){
       else {
         clearInterval(interval);
       }
-    }, 5000 );
+    }, 5000 )
 });
