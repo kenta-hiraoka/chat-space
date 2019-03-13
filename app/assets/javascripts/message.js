@@ -1,37 +1,33 @@
-$(function(){
-  function buildHTML(message) {
-
-    var image = message.image ? `<img src=${ message.image }>` : ``;
-
-    var html = `<div class="message" data-massage-id = "${ message.id }">
-                  <div class="upper_message">
+$(document).on('turbolinks:load', function(){
+  function buildHTML(message){
+    var img = message.image ? `<img src=${ message.image }>` : "";
+    var html = `<div class="message" data-message-id="${message.id}">
+                  <div class="upper-message">
                     <div class="upper-message__user-name">
                       ${ message.user_name }
+                    </div>
                     <div class="upper-message__date">
                       ${ message.date }
                     </div>
                   </div>
                   <div class="lower-message">
-                    <p class="lower-message.content">
-                    ${ message.content }
-                    </p>
-                  </div>
-                  <div class="message__image">
-                    ${ image }
+                    <div class="lower-message__content">
+                      ${ message.content }
+                    </div>
+                    ${ img }
                   </div>
                 </div>`
     return html;
   }
 
   function scroll(){
-    $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast')
+    $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight},'fast')
   }
 
-  $('#new_message').on('submit',function(e){
+  $('#new_message').on('submit', function(e){
     e.preventDefault();
     var formData = new FormData(this);
     var url = $(this).attr('action')
-    console.log("a")
 
     $.ajax({
       url: url,
@@ -43,23 +39,22 @@ $(function(){
     })
     .done(function(data){
       if (data.length !== 0) {
-        var html = buildHTML(data);
+      var html = buildHTML(data);
       $('.messages').append(html);
       $('.form__submit').prop('disabled', false);
       scroll();
       $('#new_message')[0].reset();
-    }
+      console.log(data);
+      }
       else {
-      alert('メッセージを入力してください');
-      $('.form_submit').prop('disabled', false);
-    }
+        alert('メッセージを入力してください');
+        $('.form__submit').prop('disabled', false);
+      }
     })
     .fail(function(){
-      alert('メッセージが送信できませんでした');
-      $('.form_submit').prop('disabled', false);
+      alert('error');
     })
   });
-
     var autoupdate = setInterval(function() {
       if (location.pathname.match(/\/groups\/\d+\/messages/)) {
         var last_message_id = $(".message").last().data('message-id');
@@ -69,8 +64,8 @@ $(function(){
           dataType: 'json',
           data: {id: last_message_id }
         })
-        .done(function(new_message) {
-          new_message.forEach(function(message) {
+        .done(function(data) {
+          data.forEach(function(message) {
             $('.messages').append(buildHTML(message));
             scroll();
           })
